@@ -1,0 +1,17 @@
+<div id="nav" class="w-full px-6">
+  @for (itemMenu of menuOptions(); track itemMenu.route) {
+    <a [routerLink]="itemMenu.route"
+       routerLinkActive="bg-red-500"
+       [routerLinkActiveOptions]="{ exact: true }"
+       class="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-white/5 transition ease-linear duration-150">
+        <div>
+          <!-- <i class="{{ itemMenu.icon }}"></i> -->
+          <i [class]="itemMenu.icon"></i>
+        </div>
+        <div class="flex flex-col">
+            <span class="text-lg font-bold leading-5 text-white"> {{ itemMenu.label }} </span>
+            <span class="text-sm text-white/50 hidden md:block"> {{ itemMenu.subLabel }} </span>
+        </div>
+    </a>
+  }
+</div>
