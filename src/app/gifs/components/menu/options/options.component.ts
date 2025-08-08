@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { GifService } from './../../../services/gif.service';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 interface MenuOption {
@@ -18,6 +19,13 @@ interface MenuOption {
 })
 export class OptionsComponent {
 
+  gifService = inject(GifService);
+
+  // En Angular Signals, cuando asignas el signal
+  // como referencia a una variable (sin llamarlo),
+  // lo que guardas es el signal mismo, no su valor
+  gifHistoryKey = this.gifService.searchHistoryKey;
+
   menuOptions = signal<MenuOption[]>(
     [
       {
@@ -32,7 +40,8 @@ export class OptionsComponent {
         route: '/dashboard/search',
         subLabel: 'Buscar Gifs',
       }
-    ])
+    ]
+  )
 
 
 }
