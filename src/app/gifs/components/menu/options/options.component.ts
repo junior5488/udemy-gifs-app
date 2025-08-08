@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { GifService } from './../../../services/gif.service';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 interface MenuOption {
@@ -18,6 +19,10 @@ interface MenuOption {
 })
 export class OptionsComponent {
 
+  gifService = inject(GifService);
+
+  gifHistoryKey = this.gifService.searchHistoryKey;
+  
   menuOptions = signal<MenuOption[]>(
     [
       {
@@ -32,7 +37,6 @@ export class OptionsComponent {
         route: '/dashboard/search',
         subLabel: 'Buscar Gifs',
       }
-    ])
-
-
+    ]
+  )
 }

@@ -1,0 +1,18 @@
+<h3 class="text-2xl font-bold mt-4">
+  @if (query() === 'No query provided') {
+    'No query provided';
+  } @else {
+    Mostrando : {{ query() | titlecase }}
+  }
+</h3>
+
+<section class="py-5">
+  @if (gifsByKeys().length === 0) {
+    <p class="text-gray-500">No hay resultados para la búsqueda "{{ query() }}"</p>
+  } @else {
+    <p class="text-gray-500">Mostrando {{ gifsByKeys().length }} resultados</p>
+    <app-gifs-list [gifs]="gifsByKeys()" />
+  }
+
+</section>
+
